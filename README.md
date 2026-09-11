@@ -1,5 +1,7 @@
 # Hull Finder
 
+![leastY_is_leastX example](docs/screenshots/leastY_is_leastX.png)
+
 Computes the convex hull of a 2D point set and writes a PNG so you can inspect the result. No GUI — image output only, stdlib drawing.
 
 This is the **outer perimeter** only: points strictly inside the hull are drawn but are not part of the red path. That is expected (see [SPECS.md](SPECS.md) investigation for `leastY_is_leastX`).
