@@ -26,6 +26,7 @@ Living list of requirements and investigation notes. Update as work progresses.
 - [x] Existing helpers: `findHighestPoint` / `findLowestPoint`
 - [x] Bad CSV row returns an error
 - [x] CSV sample loads and visualizes
+- [x] Large-coordinate (`[0,2000]×[0,2000]`) fixtures covering distinct algorithm aspects (`testdata/dim2000/`)
 
 ## Algorithm / starter code
 - [x] Keep existing types (`point`, `points`, `hull`, `hullFinder`, `convexHullFinder`)
@@ -110,3 +111,46 @@ cross((2,4), (4,1), (3,2)) = (4-2)*(2-4) - (1-4)*(3-2)
 - [x] Documented: interior points must appear as blue outlines without red fill
 - [x] Documented: red path is the convex perimeter, not an all-points tour
 - [ ] If product goal changes to visit-all / shortest path through every point, open a new algorithm track (out of scope for current hull finder)
+
+---
+
+## Large fixtures: `testdata/dim2000/`
+
+Coordinates span `[0, 2000] × [0, 2000]`. Regenerated with:
+
+```bash
+go run testdata/gendata.go
+```
+
+Visualized by `Test_Dim2000Fixtures` → `testdata/out/dim2000_*.png`.
+
+| Fixture | Aspect exercised |
+|---------|------------------|
+| `01_interior_cloud` | Many interior points → few hull extremes |
+| `02_circle_ring` | Almost every sample is a hull vertex |
+| `03_bounding_square` | Full-plane corners dominate the hull |
+| `04_upper_heavy` | Asymmetric upper vs lower chains |
+| `05_collinear_base` | Collinear bottom edge (only endpoints matter) |
+| `06_diamond` | Mid-plane diamond + interior fill |
+| `07_two_clusters` | Hull bridges two separated blobs |
+| `08_axis_cross` | Axis-aligned cross + corner outliers |
+| `09_thin_vertical` | Narrow X range / near-vertical set |
+| `10_grid_lattice` | Regular grid → rectangular hull |
+
+### Screenshots
+
+**Interior cloud (few red vertices, many blue outlines):**
+
+![dim2000 interior cloud](docs/screenshots/dim2000_01_interior_cloud.png)
+
+**Circle ring (dense red perimeter):**
+
+![dim2000 circle ring](docs/screenshots/dim2000_02_circle_ring.png)
+
+**Collinear base:**
+
+![dim2000 collinear base](docs/screenshots/dim2000_05_collinear_base.png)
+
+**Two clusters:**
+
+![dim2000 two clusters](docs/screenshots/dim2000_07_two_clusters.png)

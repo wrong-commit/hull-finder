@@ -50,7 +50,17 @@ One point per row as `x,y` (integers). Extra columns are ignored. Blank lines an
 4,1
 ```
 
-See `testdata/sample_points.csv` for a full example.
+See `testdata/sample_points.csv` for a small example.
+
+### Large 2000×2000 fixtures
+
+Ten scenarios live under `testdata/dim2000/` (coords in `[0, 2000]`). Catalog: `testdata/dim2000/README.md`.
+
+```bash
+go run . testdata/dim2000/02_circle_ring.csv circle.png
+go test -run Test_Dim2000Fixtures   # writes testdata/out/dim2000_*.png
+go run testdata/gendata.go          # regenerate CSVs
+```
 
 ## How to consume the generated images
 
